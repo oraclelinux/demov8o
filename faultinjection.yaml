@@ -1,5 +1,6 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
+namespace: sock-shop-v8
 metadata:
   name: catalogue
 spec:
