@@ -1186,7 +1186,7 @@ spec:
                 kubernetes.io/ingress.class: istio
             spec:
               rules:
-              - host: sockshop.129.154.32.206.nip.io
+              - host: sockshop.10.0.0.2.nip.io
                 http:
                   paths:
                     - path: /
