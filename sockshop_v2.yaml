@@ -1,4 +1,3 @@
----
 apiVersion: core.oam.dev/v1alpha2
 kind: ApplicationConfiguration
 metadata:
@@ -15,6 +14,11 @@ spec:
           properties:
             hostname: frontend.sockshop.example.com
             path: /
+        - type: autoscaler
+          properties:
+            minReplicas: 1
+            maxReplicas: 5
+            targetCPUUtilizationPercentage: 80
     - name: catalogue
       type: worker
       properties:
@@ -26,6 +30,12 @@ spec:
             minReplicas: 1
             maxReplicas: 5
             targetCPUUtilizationPercentage: 80
+        - type: horizontalPodAutoscaler
+          properties:
+            minReplicas: 1
+            maxReplicas: 10
+            targetCPUUtilizationPercentage: 70
+            targetMemoryUtilizationPercentage: 80
     - name: orders
       type: worker
       properties:
@@ -37,6 +47,12 @@ spec:
             minReplicas: 1
             maxReplicas: 5
             targetCPUUtilizationPercentage: 80
+        - type: horizontalPodAutoscaler
+          properties:
+            minReplicas: 1
+            maxReplicas: 5
+            targetCPUUtilizationPercentage: 70
+            targetMemoryUtilizationPercentage: 80
     - name: payment
       type: worker
       properties:
