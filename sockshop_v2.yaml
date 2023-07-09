@@ -1,0 +1,49 @@
+apiVersion: core.oam.dev/v1alpha2
+kind: ApplicationConfiguration
+metadata:
+  name: sockshop
+spec:
+  components:
+    - name: frontend
+      type: worker
+      properties:
+        image: "sockshop/frontend:latest"
+        port: 80
+      traits:
+        - type: ingress
+          properties:
+            hostname: frontend.sockshop.example.com
+            path: /
+    - name: catalogue
+      type: worker
+      properties:
+        image: "sockshop/catalogue:latest"
+        port: 80
+      traits:
+        - type: autoscaler
+          properties:
+            minReplicas: 1
+            maxReplicas: 5
+            targetCPUUtilizationPercentage: 80
+    - name: orders
+      type: worker
+      properties:
+        image: "sockshop/orders:latest"
+        port: 80
+      traits:
+        - type: autoscaler
+          properties:
+            minReplicas: 1
+            maxReplicas: 5
+            targetCPUUtilizationPercentage: 80
+    - name: payment
+      type: worker
+      properties:
+        image: "sockshop/payment:latest"
+        port: 80
+      traits:
+        - type: autoscaler
+          properties:
+            minReplicas: 1
+            maxReplicas: 5
+            targetCPUUtilizationPercentage: 80
