@@ -53,7 +53,7 @@ spec:
       name: carts
       namespace: sock-shop-v8
     spec:
-      replicas: 1
+      replicas: 1000
       selector:
         matchLabels:
           name: carts
